@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "456785084060",
+    "firebase_url": "https://oyla-60674.firebaseio.com",
+    "project_id": "oyla-60674",
+    "storage_bucket": "oyla-60674.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456785084060:android:7e799e4c4115401fe2b759",
+        "android_client_info": {
+          "package_name": "com.taybtu.oyla"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "456785084060-jk6e5mtsfh4c82fn1uoupihehro2oqeg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBk26R7YzhH3SIg9VIdQfFeHisYwplsaRU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "456785084060-jk6e5mtsfh4c82fn1uoupihehro2oqeg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
