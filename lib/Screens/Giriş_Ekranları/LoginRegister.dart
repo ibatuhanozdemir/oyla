@@ -24,7 +24,7 @@ class _LoginRegisterState extends State<LoginRegister> {
         centerTitle: true,
         title: TypewriterAnimatedTextKit(
           isRepeatingAnimation: false,
-          text: ["Belediye Haberleri"],
+          text: ["OYLA"],
           speed: Duration(milliseconds: 200),
           textStyle: TextStyle(fontSize: MediaQuery.of(context).size.width*0.05
           ),
@@ -42,7 +42,7 @@ class _LoginRegisterState extends State<LoginRegister> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
 
-              Image(image:  AssetImage("images/giris.gif")),
+              //Image(image:  AssetImage("images/giris.gif")),
               SizedBox(height: 40,),
               SizedBox(
                 height: 48,
