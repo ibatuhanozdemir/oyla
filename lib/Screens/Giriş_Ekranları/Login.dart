@@ -91,10 +91,10 @@ class _LoginState extends State<Login> {
                           } else {
                             print('sign in');
                             setState(() => loading = false);
-                            Navigator.pushReplacement(
+                            Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Chooser()));
+                                    builder: (context) => Chooser()),(Route<dynamic> route) => false,);
                           }
                         },
                         child: Row(
