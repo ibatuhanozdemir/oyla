@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:emojis/emojis.dart';
-import 'package:emojis/emoji.dart';
 import 'package:oyla/Backend/authentication.dart';
 import 'package:oyla/Screens/Giri%C5%9F_Ekranlar%C4%B1/reser_password.dart';
 
@@ -72,12 +71,12 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.width*0.3,
+                        height: MediaQuery.of(context).size.width * 0.3,
                       ),
                       RaisedButton(
                         shape: RoundedRectangleBorder(
                             borderRadius:
-                            BorderRadius.all(Radius.circular(24))),
+                                BorderRadius.all(Radius.circular(24))),
                         color: Colors.blue,
                         textColor: Colors.white,
                         onPressed: () async {
@@ -90,8 +89,7 @@ class _LoginState extends State<Login> {
                             scKey.currentState.showSnackBar(snackBar);
                             print('error');
                           } else {
-
-                            print('sig in');
+                            print('sign in');
                             setState(() => loading = false);
                             Navigator.pushReplacement(
                                 context,
@@ -124,7 +122,7 @@ class _LoginState extends State<Login> {
                       RaisedButton(
                         shape: RoundedRectangleBorder(
                             borderRadius:
-                            BorderRadius.all(Radius.circular(24))),
+                                BorderRadius.all(Radius.circular(24))),
                         color: Colors.amber.shade400,
                         textColor: Colors.white,
                         onPressed: () async {
@@ -158,7 +156,7 @@ class _LoginState extends State<Login> {
                       RaisedButton(
                         shape: RoundedRectangleBorder(
                             borderRadius:
-                            BorderRadius.all(Radius.circular(24))),
+                                BorderRadius.all(Radius.circular(24))),
                         color: Colors.red,
                         textColor: Colors.white,
                         child: Row(

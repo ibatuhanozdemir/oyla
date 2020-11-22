@@ -65,8 +65,7 @@ class _LoginRegisterState extends State<LoginRegister> {
                     ],
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(new MaterialPageRoute(
-                        builder: (BuildContext context) => Login()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
                   },
                 ),
               ),
@@ -94,8 +93,7 @@ class _LoginRegisterState extends State<LoginRegister> {
                     ],
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(new MaterialPageRoute(
-                        builder: (BuildContext context) => Register()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Register()));
                   },
                 ),
               ),

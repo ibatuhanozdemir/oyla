@@ -1,13 +1,9 @@
-
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'Backend/authentication.dart';
 import 'Chooser.dart';
 import 'Objeler/KullaniciObjesi.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,9 +26,7 @@ class MyApp extends StatelessWidget {
                 primaryColor: Color(0xFF15202B),
               ),
               debugShowCheckedModeBanner: false,
-              home: Scaffold(
-                body: Chooser(),
-              ),
+              home:  Chooser()
             ),
           );
         });
