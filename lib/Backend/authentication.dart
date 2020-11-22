@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:oyla/Backend/firestore.dart';
 import 'package:oyla/Objeler/KullaniciObjesi.dart';
-
+import 'package:http/http.dart' as http;
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -25,6 +25,9 @@ class AuthService {
 
       User user = userCredential.user;
       await Firestore(uid: user.uid).updateUserData(name, surname, age);
+      var url='http://www.taybtu.com/deneme.php?uid='+user.uid+'&isim='+name+'&soyisim='+surname+'&yas='+age;
+      http.Response response = await http.get(url);
+
       user.sendEmailVerification();
       return _userFromFirebaseUser(user);
     } catch (e) {

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:emojis/emojis.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:oyla/Backend/Kategoriler.dart';
 import 'package:oyla/Backend/authentication.dart';
@@ -26,7 +28,16 @@ class _AnaSayfaState extends State<AnaSayfa> {
 
   Container():
   Scaffold(
-      endDrawer: Drawer(),
+      endDrawer: Drawer(child:RaisedButton(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(24))),
+        color: Colors.red,
+        textColor: Colors.white,
+        onPressed: (){
+          FirebaseAuth.instance.signOut();
+        },
+        child: Text("${Emojis.door} Çıkış Yap"),
+      )),
       appBar: AppBar(
         centerTitle: true,
         title: Text("deneme"),
@@ -43,7 +54,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
     );
   }
     Future getData() async{
-      var url='http://www.taybtu.com/get.php?isim=ali';
+      var url='http://www.taybtu.com/get.php';
       http.Response response = await http.get(url);
       setState(() {
         KategorilerListesi = jsonDecode(response.body);
