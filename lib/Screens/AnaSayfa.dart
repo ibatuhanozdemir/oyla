@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:oyla/Backend/authentication.dart';
 import 'package:http/http.dart' as http;
 import 'package:oyla/Screens/Kal%C4%B1pWidgetlar/Drawer.dart';
+import 'package:oyla/Screens/Layers/layer_1.dart';
 
 class AnaSayfa extends StatefulWidget {
   @override
@@ -44,6 +45,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
       body: SafeArea(
         child: Center(
           child: ListView.builder(
+            itemExtent: MediaQuery.of(context).size.width / 6,
             itemBuilder: (_, index) {
               return Card(
                   child: Padding(
@@ -64,20 +66,28 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     ),
                     Row(
                       children: [
-                        Text("Oy ver",style: TextStyle(color: Colors.blue.shade700),),
+                        Text(
+                          "Oy ver",
+                          style: TextStyle(color: Colors.blue.shade700),
+                        ),
                         SizedBox(
                           width: 20,
                         ),
                         altKategoriChecker[index] == "1"
-                            ? Icon(
-                                Icons.arrow_drop_down,
-                                color: Colors.red,
-                                size: 30,
-                              )
+                            ? GestureDetector(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>Layer1()));
+                              },
+                              child: Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.red,
+                                  size: 20,
+                                ),
+                            )
                             : Icon(
-                                Icons.arrow_drop_down,
+                                Icons.arrow_forward,
                                 color: Colors.black26,
-                                size: 30,
+                                size: 20,
                               ),
                       ],
                     ),
