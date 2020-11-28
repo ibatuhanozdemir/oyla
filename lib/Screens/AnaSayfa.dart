@@ -12,12 +12,7 @@ class AnaSayfa extends StatefulWidget {
 }
 
 class _AnaSayfaState extends State<AnaSayfa> {
-  List KategorilerListesi = [
-    "Ürünler",
-    "Kişiler",
-    "Yerler",
-    "Düşünceler",
-  ];
+  List KategorilerListesi = [];
   List ikonlarListesi = [
     "assignment",
     "assignment",
@@ -31,7 +26,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    //getData();
+    getData();
   }
 
   @override
@@ -56,12 +51,12 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("100"),
+                        Text(KategorilerListesi[index]['rate_value']),
                         SizedBox(
                           width: 10,
                         ),
                         Icon(Icons.assignment),
-                        Text(KategorilerListesi[index]),
+                        Text(KategorilerListesi[index]['kategori_isim']),
                       ],
                     ),
                     Row(
@@ -73,10 +68,10 @@ class _AnaSayfaState extends State<AnaSayfa> {
                         SizedBox(
                           width: 20,
                         ),
-                        altKategoriChecker[index] == "1"
+                        KategorilerListesi[index]['sub_category_exist'] == "1"
                             ? GestureDetector(
                               onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>Layer1()));
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>Layer1(KategorilerListesi[index]['kategori_isim'])));
                               },
                               child: Icon(
                                   Icons.arrow_forward,
@@ -102,15 +97,15 @@ class _AnaSayfaState extends State<AnaSayfa> {
     );
   }
 
-/*
+
   Future getData() async {
-    var url = 'http://www.taybtu.com/get.php?isim=ali';
+    var url = 'http://www.taybtu.com/oyla/GetMainCategory.php';
     http.Response response = await http.get(url);
     setState(() {
       KategorilerListesi = jsonDecode(response.body);
-      print(KategorilerListesi[2]['kategori_isim']);
+      print(KategorilerListesi);
     });
   }
-  */
+
 
 }
