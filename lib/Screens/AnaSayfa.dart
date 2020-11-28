@@ -5,6 +5,7 @@ import 'package:oyla/Backend/authentication.dart';
 import 'package:http/http.dart' as http;
 import 'package:oyla/Screens/Kal%C4%B1pWidgetlar/Drawer.dart';
 import 'package:oyla/Screens/Layers/layer_1.dart';
+import 'package:oyla/Screens/Layers/oylama_widget.dart';
 
 class AnaSayfa extends StatefulWidget {
   @override
@@ -20,7 +21,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
     "assignment",
   ];
   List altKategoriChecker = ["1", "0", "1", "0"];
-
+  OylamaWidgeti oylamaWidgeti = OylamaWidgeti();
   AuthService authService = AuthService();
   @override
   void initState() {
@@ -61,9 +62,14 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     ),
                     Row(
                       children: [
-                        Text(
-                          "Oy ver",
-                          style: TextStyle(color: Colors.blue.shade700),
+                        GestureDetector(
+                          onTap: (){
+                            oylamaWidgeti.showInformationDialog(context);
+                          },
+                          child: Text(
+                            "Oy ver",
+                            style: TextStyle(color: Colors.blue.shade700),
+                          ),
                         ),
                         SizedBox(
                           width: 20,
