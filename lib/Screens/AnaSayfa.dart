@@ -36,7 +36,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
       endDrawer: KalipDrawer(),
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Ana Kategoriler"),
+        title: Text("Ana Kategorile"),
       ),
       body: SafeArea(
         child: Center(
