@@ -15,6 +15,7 @@ class OylamaWidgeti {
 class CustomSlider extends StatefulWidget {
   BuildContext context;
   CustomSlider(this.context);
+  String asd;
 
   @override
   _CustomSliderState createState() => _CustomSliderState();
