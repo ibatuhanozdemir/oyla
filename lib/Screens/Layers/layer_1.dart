@@ -1,10 +1,13 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:oyla/Backend/authentication.dart';
 import 'package:http/http.dart' as http;
 import 'package:oyla/Screens/Kal%C4%B1pWidgetlar/Drawer.dart';
 import 'package:oyla/Screens/Layers/layer_1.dart';
+
+import 'custom_slider.dart';
 
 class Layer1 extends StatefulWidget {
   @override
@@ -17,7 +20,7 @@ class Layer1 extends StatefulWidget {
 
 class _Layer1State extends State<Layer1> {
   String baslik;
-
+  double baslangic =0;
   _Layer1State(this.baslik);
 
   List KategorilerListesi = [];
@@ -68,9 +71,14 @@ class _Layer1State extends State<Layer1> {
                         ),
                         Row(
                           children: [
-                            Text(
-                              "Oy ver",
-                              style: TextStyle(color: Colors.blue.shade700),
+                            GestureDetector(
+                              onTap: (){
+                                showInformationDialog(context);
+                              },
+                              child: Text(
+                                "Oy ver",
+                                style: TextStyle(color: Colors.blue.shade700),
+                              ),
                             ),
                             SizedBox(
                               width: 20,
@@ -115,5 +123,14 @@ class _Layer1State extends State<Layer1> {
     });
   }
 
+  Future<void> showInformationDialog(BuildContext context) async {
+    return await showDialog(
+        context: context,
+        builder: (context) {
+          return CupertinoAlertDialog(
+            content: CustomSlider(context, baslangic),
+          );
+        });
+  }
 
 }

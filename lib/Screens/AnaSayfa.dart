@@ -1,11 +1,12 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:oyla/Backend/authentication.dart';
 import 'package:http/http.dart' as http;
 import 'package:oyla/Screens/Kal%C4%B1pWidgetlar/Drawer.dart';
 import 'package:oyla/Screens/Layers/layer_1.dart';
-import 'package:oyla/Screens/Layers/oylama_widget.dart';
+import 'package:oyla/Screens/Layers/custom_slider.dart';
 
 class AnaSayfa extends StatefulWidget {
   @override
@@ -13,6 +14,7 @@ class AnaSayfa extends StatefulWidget {
 }
 
 class _AnaSayfaState extends State<AnaSayfa> {
+  double baslangic =0;
   List KategorilerListesi = [];
   List ikonlarListesi = [
     "assignment",
@@ -21,7 +23,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
     "assignment",
   ];
   List altKategoriChecker = ["1", "0", "1", "0"];
-  OylamaWidgeti oylamaWidgeti = OylamaWidgeti();
+
   AuthService authService = AuthService();
   @override
   void initState() {
@@ -64,7 +66,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                       children: [
                         GestureDetector(
                           onTap: (){
-                            oylamaWidgeti.showInformationDialog(context);
+                            showInformationDialog(context);
                           },
                           child: Text(
                             "Oy ver",
@@ -103,6 +105,15 @@ class _AnaSayfaState extends State<AnaSayfa> {
     );
   }
 
+  Future<void> showInformationDialog(BuildContext context) async {
+    return await showDialog(
+        context: context,
+        builder: (context) {
+          return CupertinoAlertDialog(
+            content: CustomSlider(context, baslangic),
+          );
+        });
+  }
 
   Future getData() async {
     var url = 'http://www.taybtu.com/oyla/GetMainCategory.php';
