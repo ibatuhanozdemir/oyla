@@ -4,18 +4,30 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:oyla/Backend/authentication.dart';
 import 'package:http/http.dart' as http;
+import 'package:oyla/Objeler/KullaniciObjesi.dart';
 import 'package:oyla/Screens/Kal%C4%B1pWidgetlar/Drawer.dart';
 import 'package:oyla/Screens/Layers/layer_1.dart';
 import 'package:oyla/Screens/Layers/custom_slider.dart';
+import 'package:provider/provider.dart';
 
 class AnaSayfa extends StatefulWidget {
   @override
-  _AnaSayfaState createState() => _AnaSayfaState();
+  BuildContext context;
+
+  AnaSayfa(this.context);
+
+  _AnaSayfaState createState() => _AnaSayfaState(context);
 }
 
 class _AnaSayfaState extends State<AnaSayfa> {
+  BuildContext context;
+
+  _AnaSayfaState(this.context);
   double baslangic =0;
   List KategorilerListesi = [];
+  List UserRatesList = [];
+  List KontrolListesi=[];
+
   List ikonlarListesi = [
     "assignment",
     "assignment",
@@ -24,21 +36,24 @@ class _AnaSayfaState extends State<AnaSayfa> {
   ];
   List altKategoriChecker = ["1", "0", "1", "0"];
 
-  AuthService authService = AuthService();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getData();
+    final user = Provider.of<KullaniciObjesi>(context);
+    getData(user.uid);
   }
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<KullaniciObjesi>(context);
+
     return Scaffold(
       endDrawer: KalipDrawer(),
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Ana Kategorile"),
+        title: Text("Ana Kategoriler"),
       ),
       body: SafeArea(
         child: Center(
@@ -63,10 +78,14 @@ class _AnaSayfaState extends State<AnaSayfa> {
                       ],
                     ),
                     Row(
-                      children: [
+                      children: [ KontrolListesi.contains(KategorilerListesi[index]['kategori_isim'])?
+                      Text('güncelle'):
                         GestureDetector(
                           onTap: (){
-                            showInformationDialog(context);
+                            showInformationDialog(context,user.uid,'kategoriler',KategorilerListesi[index]['kategori_isim'],KategorilerListesi[index]['rate_value'],KategorilerListesi[index]['total_num_of_rates']).then((_)=>
+
+                                getData(user.uid));
+
                           },
                           child: Text(
                             "Oy ver",
@@ -105,24 +124,33 @@ class _AnaSayfaState extends State<AnaSayfa> {
     );
   }
 
-  Future<void> showInformationDialog(BuildContext context) async {
+  Future<void> showInformationDialog  (BuildContext context,String uid,String top_category_name,String rate_name,String rate_value,String total_num_of_rates) async {
     return await showDialog(
         context: context,
-        builder: (context) {
-          return CupertinoAlertDialog(
-            content: CustomSlider(context, baslangic),
+        builder: (context)  {
+          return  CupertinoAlertDialog(
+            content: CustomSlider(context, baslangic,uid,top_category_name,rate_name,rate_value,total_num_of_rates),
           );
         });
   }
 
-  Future getData() async {
+  Future getData(String uid) async {
     var url = 'http://www.taybtu.com/oyla/GetMainCategory.php';
     http.Response response = await http.get(url);
+    var url2 = 'http://www.taybtu.com/oyla/GetUserInfo.php?uid='+uid;
+    http.Response response2 = await http.get(url2);
     setState(() {
       KategorilerListesi = jsonDecode(response.body);
-      print(KategorilerListesi);
+      UserRatesList= jsonDecode(response2.body);
+
+      UserRatesList.forEach((element) {
+        KontrolListesi.add(element['rate_name']);});
+
+      print(KontrolListesi.contains('sdfsdf'));
     });
   }
+
+
 
 
 }

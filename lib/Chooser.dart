@@ -19,7 +19,7 @@ class Chooser extends StatelessWidget {
 
       return LoginRegister();
     } else {
-      return AnaSayfa();
+      return AnaSayfa(context);
     }
   }
 }
